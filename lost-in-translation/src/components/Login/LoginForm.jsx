@@ -1,78 +1,84 @@
-import { useState, useEffect } from "react"
-import { useForm } from "react-hook-form"
-import { loginUser } from "../../api/user"
-import { storageSave } from "../../utils/storage"
+import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { loginUser } from "../../api/user";
+import { storageSave } from "../../utils/storage";
 import { useNavigate } from "react-router-dom"
-import { useUser } from "../../context/UserContext"
-import { STORAGE_KEY_USER } from "../../const/storageKeys"
+import { useUser } from "../../context/UserContext";
+import { STORAGE_KEYS_USER } from "../../const/storageKeys";
 
 const usernameConfig = {
-    required: true,
-    minLength: 3
+  required: true,
+  minLength: 2,
 };
 
 const LoginForm = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm()
-    const { user, setUser } = useUser(null)
-    const navigate = useNavigate()
 
-    const [ loading, setLoading ] = useState(false)
-    const [ apiError, setApiError ] = useState(null)
+  //hooks
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
 
-    useEffect(() => {
-        if (user !== null){
-            navigate("profile")
-        }
-    }, [ user, navigate ])
-    
-    const onSubmit = async ({ username }) => {
-        setLoading(true)
-        const [error, userResponse] = await loginUser(username)
+  const {user, setUser} = useUser();
+  
+  const [loading, setLoading] = useState(false);
+  const [apiError, setApiError] = useState(null);
+  const navigate = useNavigate();
 
-        if(error !== null){
-            setApiError(error)
-        }
-        if(userResponse !== null) {
-            storageSave(STORAGE_KEY_USER, userResponse)
-            setUser(userResponse)
-        }
 
-        setLoading(false)
+  useEffect(()=>{
+    if(user !== null){
+      navigate('/profile');
     }
 
-    const errorMessage = (() => {
-        if(!errors.username) {
-            return null
-        }
-        if(errors.username.type === "required"){
-            return <span>Username is required</span>
-        }
-        if(errors.username.type === "minLength"){
-            return <span>Minimum 3 characters</span>
-        }
-    })()
+  }, [user, navigate])
 
-    return (
-        <>
-            <h2>What's your name?</h2>
-            <form onSubmit={ handleSubmit(onSubmit) }>
-                <fieldset>
-                    <label htmlFor="username">Username: </label>
-                    <input
-                        type="text"
-                        placeholder="johndoe"
-                        { ...register("username", usernameConfig) } 
-                    />
-                    { errorMessage }
-                </fieldset>
+  const onSubmit = async ({ username }) => {
+    setLoading(true);
+    const [error, userResponse] = await loginUser(username);
+    if (error !== null) {
+      setApiError(error);
+    }
+    if(userResponse !== null){
+      storageSave(STORAGE_KEYS_USER, userResponse);
+      setUser(userResponse);
+    }
+    setLoading(false);
 
-                <button type="submit" disabled={ loading }>Continue</button>
+  };
 
-                { loading && <p>Logging in...</p>}
-                { apiError && <p>{ apiError }</p>}
-            </form>
-        </>
-    )
-}
+  const errorMessage = (() => {
+    if (!errors.username) return null;
 
-export default LoginForm
+    if (errors.username.type === "required")
+      return <span>Username is required</span>;
+
+    if (errors.username.type === "minLength")
+      return <span>Username is too short</span>;
+  })();
+
+  return (
+    <>
+      <h2>What's your name?</h2>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <fieldset>
+          <label htmlFor="userName">Username</label>
+          <input
+            type="text"
+            placeholder="username"
+            {...register("username", usernameConfig)}
+          />
+          {errorMessage}
+        </fieldset>
+
+        <button type="submit" disabled={loading}>
+          Continue
+        </button>
+        {loading && <p>Logging in...</p>}
+        {apiError && <p>{apiError}</p>}
+      </form>
+    </>
+  );
+};
+export default LoginForm;

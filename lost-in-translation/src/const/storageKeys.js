@@ -1,5 +1,1 @@
-export const STORAGE_KEY_USER = "translator-user"
-
-///// TO DO /////
-
-//Use case?
+export const STORAGE_KEYS_USER = 'coffee-user';
