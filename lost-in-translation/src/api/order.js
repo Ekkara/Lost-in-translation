@@ -7,7 +7,7 @@ try{
         method: 'PATCH',
         headers: createHeaders(),
         body: JSON.stringify({
-            //username: user.username,
+            username: user.username,
             orders: [...user.orders, order]
         })
     });

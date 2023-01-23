@@ -1,9 +1,9 @@
 import './App.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Login from './Views/Login';
-import Orders from './Views/Orders';
 import Profile from './Views/Profile';
 import Navbar from './components/Navbar/Navbar';
+import Translate from './Views/Translate';
 function App() {
  
   return (
@@ -12,7 +12,7 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path = "/" element= {<Login />} />
-        <Route path = "/orders" element={<Orders/>}/>
+        <Route path = "/translate" element={<Translate/>}/>
         <Route path = "/profile" element={<Profile />}/>
       </Routes>
     </div>

@@ -25,6 +25,10 @@ const Profile = () =>{
     return (
     <>
     <h1>Profile</h1>
+    {
+        //to do display history
+        //clear history button
+    }
     <ProfileHeaders username={user.username }/>
     <ProfileActions/>
     <ProfileOrderHistory orders ={user.orders}/>
