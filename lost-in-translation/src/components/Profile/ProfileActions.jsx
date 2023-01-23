@@ -37,7 +37,7 @@ const ProfileActions = () =>{
     return(
         <ul>
             <li>
-            <Link to="/orders">Orders</Link>
+            <Link to="/translate">Translate</Link>
                 
             </li>
             <li>
