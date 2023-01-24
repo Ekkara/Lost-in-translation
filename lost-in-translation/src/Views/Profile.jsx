@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { userById } from "../api/user";
 import ProfileActions from "../components/Profile/ProfileActions";
 import ProfileHeaders from "../components/Profile/ProfileHeader";
-import ProfileOrderHistory from "../components/Profile/ProfileOrderHistory";
+//import ProfileOrderHistory from "../components/Profile/ProfileOrderHistory";
 import { STORAGE_KEYS_USER } from "../const/storageKeys";
 import { useUser } from "../context/UserContext";
 import withAuth from "../hoc/withAuth";
@@ -31,7 +31,7 @@ const Profile = () =>{
     }
     <ProfileHeaders username={user.username }/>
     <ProfileActions/>
-    <ProfileOrderHistory orders ={user.orders}/>
+    {/*<ProfileOrderHistory orders ={user.orders}/>*/}
     </>)
 }
 export default withAuth(Profile);
