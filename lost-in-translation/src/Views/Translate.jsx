@@ -58,7 +58,7 @@ const Translate = () => {
   signMap.set("y", y);
   signMap.set("z", z);
 
-  const [translateTxt, setTranslateTxt] = useState('');
+  const [translateTxt, setTranslateTxt]= useState('');
   const [translatedTxt, setTranslatedTxt] = useState('');  
   
   const translate = (str) => {
@@ -66,7 +66,7 @@ const Translate = () => {
     let rElements = [];
     for (let i = 0; i < str.length; i++) {
       let char = str.charAt(i);
-      if(RegExp(/^\p{L}/,'u').test(char)){ // thank you Michael Schmid! https://stackoverflow.com/questions/9862761/how-to-check-if-character-is-a-letter-in-javascript
+      if(char.match(/[a-z]/)){ // thank you JaredPar! https://stackoverflow.com/questions/9862761/how-to-check-if-character-is-a-letter-in-javascript
         rElements.push(<img src={signMap.get(char)} alt={char} key={"char: " + i} width= {SIGN_SIZE + "px"} height={SIGN_SIZE + "px"}/>);
       }
       else if(char === ' '){
