@@ -1,14 +1,14 @@
 import {createHeaders} from "./index"
 
 const  apiURL = process.env.REACT_APP_API_URL;
-export const orderAdd = async (user, order) =>{
+export const orderAdd = async (user, translation) =>{
 try{
     const response = await fetch(`${apiURL}/${user.id}`, {
         method: 'PATCH',
         headers: createHeaders(),
         body: JSON.stringify({
             username: user.username,
-            orders: [...user.orders, order]
+            translations: [...user.translations, translation]
         })
     });
 
@@ -30,7 +30,7 @@ try{
         method: 'PATCH',
         headers: createHeaders(),
         body: JSON.stringify({
-            orders: []
+            translations: []
         })
 
     });

@@ -28,7 +28,7 @@ const ProfileActions = () =>{
         }
         const updateUser = {
             ...user,
-            orders:[]
+            translations:[]
         }
         
         storageSave(STORAGE_KEYS_USER, updateUser);

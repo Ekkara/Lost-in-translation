@@ -20,5 +20,4 @@ export const storageRead =key =>{
 
 export const storageDelete = key =>{
     sessionStorage.removeItem(key);
-
 }
