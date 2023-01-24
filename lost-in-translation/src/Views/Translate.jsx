@@ -1,33 +1,97 @@
+import { useState } from "react";
+import a from "../components/individial_signs/a.png";
+import b from "../components/individial_signs/b.png";
+import c from "../components/individial_signs/c.png";
+import d from "../components/individial_signs/d.png";
+import e from "../components/individial_signs/e.png";
+import f from "../components/individial_signs/f.png";
+import g from "../components/individial_signs/g.png";
+import h from "../components/individial_signs/h.png";
+import i from "../components/individial_signs/i.png";
+import j from "../components/individial_signs/j.png";
+import k from "../components/individial_signs/k.png";
+import l from "../components/individial_signs/l.png";
+import m from "../components/individial_signs/m.png";
+import n from "../components/individial_signs/n.png";
+import o from "../components/individial_signs/o.png";
+import p from "../components/individial_signs/p.png";
+import q from "../components/individial_signs/q.png";
+import r from "../components/individial_signs/r.png";
+import s from "../components/individial_signs/s.png";
+import t from "../components/individial_signs/t.png";
+import u from "../components/individial_signs/u.png";
+import v from "../components/individial_signs/v.png";
+import w from "../components/individial_signs/w.png";
+import x from "../components/individial_signs/x.png";
+import y from "../components/individial_signs/y.png";
+import z from "../components/individial_signs/z.png";
+import space from "../components/individial_signs/space.png";
+
+const SIGN_SIZE = 25;
+
 const Translate = () => {
   const signMap = new Map();
-  signMap.set("a", 1);
-  signMap.set("b", 2);
-  signMap.set("c", 3);
+  signMap.set("a", a);
+  signMap.set("b", b);
+  signMap.set("c", c);
+  signMap.set("d", d);
+  signMap.set("e", e);
+  signMap.set("f", f);
+  signMap.set("g", g);
+  signMap.set("h", h);
+  signMap.set("i", i);
+  signMap.set("j", j);
+  signMap.set("k", k);
+  signMap.set("l", l);
+  signMap.set("m", m);
+  signMap.set("n", n);
+  signMap.set("o", o);
+  signMap.set("p", p);
+  signMap.set("q", q);
+  signMap.set("r", r);
+  signMap.set("s", s);
+  signMap.set("t", t);
+  signMap.set("u", u);
+  signMap.set("v", v);
+  signMap.set("w", w);
+  signMap.set("x", x);
+  signMap.set("y", y);
+  signMap.set("z", z);
 
-  const translateStr = "abc";
+  const [translateTxt, setTranslateTxt]= useState('');
+  const [translatedTxt, setTranslatedTxt] = useState('');  
   
-  const translateString = (str) =>{  
-    let rStr = ""
-    for(let i = 0; i < str.length; i++) {
-     rStr += signMap.get(str.charAt(i));   
+  const translate = (str) => {
+    str = str.toLowerCase();
+    let rElements = [];
+    for (let i = 0; i < str.length; i++) {
+      let char = str.charAt(i);
+      if(char.match(/[a-z]/)){ // thank you JaredPar! https://stackoverflow.com/questions/9862761/how-to-check-if-character-is-a-letter-in-javascript
+        rElements.push(<img src={signMap.get(char)} alt={char} key={"char: " + i} width= {SIGN_SIZE + "px"} height={SIGN_SIZE + "px"}/>);
+      }
+      else if(char === ' '){
+        rElements.push(<img src={space} alt={char} key={"char: " + i} width={SIGN_SIZE + "px"} height={SIGN_SIZE + "px"}/>);
+      }
     }
-    return rStr;
-  }
+    return rElements;
+  };
+
+  const translateButtonClick = () =>{
+    setTranslatedTxt(translate(translateTxt))
+    //to do: add history
+    //if over 10 remove latest
+}
 
   return (
     <>
-      <h1>Translate</h1> 
-      <h2>{translateString(translateStr)}</h2>
-
-      {
-        //to do: headline
-        //Input field
-        //(hash)map char -> hand
-        //output button
-        //translate text
-        //add history
-        //remove old if over 10
-      }
+      <h1>Translate</h1>
+      <div id="translationInput">
+        <input onChange={inputBox => setTranslateTxt(inputBox.target.value)} placeholder="Enter your text here!"></input>
+      </div>
+      <button onClick = {() => {translateButtonClick()}}>Translate</button>
+      <div id="translateOutput">
+        {translatedTxt}
+        </div>
     </>
   );
 };
