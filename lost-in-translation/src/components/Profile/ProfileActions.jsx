@@ -40,10 +40,7 @@ const ProfileActions = () =>{
     }
 
     return(
-        <ul>
-            <li>
-                <Link to="/translate">Translate</Link>           
-            </li>
+        <ul id="actionList">
             <li>
                 <button  onClick={handleClearHistoryClick}>Clear History</button>
             </li>

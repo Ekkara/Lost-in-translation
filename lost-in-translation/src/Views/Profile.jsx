@@ -7,6 +7,8 @@ import ProfileTranslateHistory from "../components/Profile/ProfileTranslateHisto
 import withAuth from "../hoc/withAuth"
 import { storageSave } from "../utils/storage"
 import { STORAGE_KEYS_USER } from "../const/storageKeys"
+import "../css/profile.css"
+import "../css/nav.css"
 
 const Profile = () =>{
     const {user, setUser} = useUser()
@@ -27,11 +29,11 @@ const Profile = () =>{
     return(
         <>
             <h1>Profile</h1>
-            {
-            }
+            <div id="profileHolder">
             <ProfileHeaders username={user.username }/>
             <ProfileActions/>
             {<ProfileTranslateHistory translations = {user.translations}/>}
+            </div>
         </>
     )
 }
