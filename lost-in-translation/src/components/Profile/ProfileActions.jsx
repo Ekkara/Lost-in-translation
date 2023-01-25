@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom"
-import { useUser } from "../../context/UserContext"
 import { orderClearHistory } from "../../api/order"
+import { useUser } from "../../context/UserContext"
 import { storageDelete, storageSave } from "../../utils/storage"
 import { STORAGE_KEYS_USER } from "../../const/storageKeys"
-
 
 const ProfileActions = () =>{    
     const { user, setUser } = useUser()
@@ -24,7 +23,7 @@ const ProfileActions = () =>{
         setUser(updateUser)
     }
 
-    const handleLogoutClick = async () =>{
+    const handleLogoutClick = async() =>{
         if(window.confirm('Are you sure you wish to log out?')){
             //send event to the parent to log out
             await clearHistory()
