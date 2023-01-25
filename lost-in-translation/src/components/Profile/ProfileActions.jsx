@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { translateClearHistory as translateClearHistory } from "../../api/translate"
+import { translateClearHistory } from "../../api/translate"
 import { useUser } from "../../context/UserContext"
 import { storageDelete, storageSave } from "../../utils/storage"
 import { STORAGE_KEYS_USER } from "../../const/storageKeys"

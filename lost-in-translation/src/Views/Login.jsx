@@ -1,5 +1,5 @@
-import LoginForm from "../components/Login/LoginForm";
-import "../css/login.css";
+import LoginForm from "../components/Login/LoginForm"
+import "../css/login.css"
 
 const Login = () => {
   return (
@@ -10,7 +10,7 @@ const Login = () => {
         <LoginForm />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
