@@ -8,21 +8,9 @@ import { orderClearHistory } from "../../api/order";
 const ProfileActions = () =>{
     
     const {user, setUser} = useUser();
-    const handleLogoutClick = () =>{
-        if(window.confirm('Are you sure you wish to logout?')){
-            //to do, clear history
-            //orderClearHistory(user.id);
 
-            //send event to the parent to log out
-           storageDelete(STORAGE_KEYS_USER);
-            setUser(null)
-        }
-    }
 
-    const handleClearHistoryClick = async() =>{
-        if(!window.confirm('Are you sure you wish to delete all data? \n this can not be undone!')){
-            return
-        }
+    const clearHistory = async() =>{
         const [clearError, clearResult] = await orderClearHistory(user);
 
         if(clearError !== null){
@@ -36,6 +24,27 @@ const ProfileActions = () =>{
         storageSave(STORAGE_KEYS_USER, updateUser);
         setUser(updateUser);
     }
+
+    const handleLogoutClick = async () =>{
+        if(window.confirm('Are you sure you wish to logout?')){
+            //to do, clear history
+            //orderClearHistory(user.id);
+
+            //send event to the parent to log out
+            await clearHistory();
+           storageDelete(STORAGE_KEYS_USER);
+            setUser(null)
+        }
+    }
+
+    const handleClearHistoryClick = async() =>{
+        if(!window.confirm('Are you sure you wish to delete all data? \n this can not be undone!')){
+            return
+        }
+        await clearHistory();     
+    }
+
+    
     return(
         <ul>
             <li>
