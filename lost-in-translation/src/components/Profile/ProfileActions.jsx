@@ -4,7 +4,6 @@ import { useUser } from "../../context/UserContext"
 import { storageDelete, storageSave } from "../../utils/storage"
 import { STORAGE_KEYS_USER } from "../../const/storageKeys"
 
-
 const ProfileActions = () =>{    
     const { user, setUser } = useUser()
 

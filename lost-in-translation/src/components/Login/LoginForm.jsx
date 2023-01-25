@@ -8,7 +8,7 @@ import { STORAGE_KEYS_USER } from "../../const/storageKeys"
 
 const usernameConfig ={
   required: true,
-  minLength: 2,
+  minLength: 2
 }
 
 const LoginForm = () =>{
@@ -26,13 +26,13 @@ const LoginForm = () =>{
   const [apiError, setApiError] = useState(null)
   const navigate = useNavigate()
 
-  useEffect(()=>{
+  useEffect(() =>{
     if(user !== null){
       navigate('/translate')
     }
   }, [user, navigate])
 
-  const onSubmit = async ({ username }) =>{
+  const onSubmit = async({ username }) =>{
     setLoading(true)
     const [error, userResponse] = await loginUser(username)
 
