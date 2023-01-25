@@ -1,13 +1,10 @@
-import { Navigate, NavLink } from "react-router-dom";
-import { useUser } from "../../context/UserContext";
+import { Navigate, NavLink } from "react-router-dom"
+import { useUser } from "../../context/UserContext"
 
-const Navbar = () => {
-  const { user } = useUser();
-  return (
+const Navbar = () =>{
+  const { user } = useUser()
+  return(
     <nav>
-      <ul>
-        <li>Shmurgle Bhurgle</li>
-      </ul>
       {user !== null && (
         <ul>
           <li>
@@ -19,6 +16,7 @@ const Navbar = () => {
         </ul>
       )}
     </nav>
-  );
-};
-export default Navbar;
+  )
+}
+
+export default Navbar
