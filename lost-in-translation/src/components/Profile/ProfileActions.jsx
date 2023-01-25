@@ -5,20 +5,11 @@ import { STORAGE_KEYS_USER } from "../../const/storageKeys";
 import { orderClearHistory } from "../../api/order";
 
 
-const ProfileActions = () =>{
-    
+const ProfileActions = () =>{    
     const {user, setUser} = useUser();
-<<<<<<< HEAD
-=======
-    const handleLogoutClick = () =>{
-        if(window.confirm('Are you sure you wish to logout?')){
-            //orderClearHistory(user.id);
-        }
->>>>>>> 32bdd6c625a6c8c62102d757d4ad8fcb39704b46
-
 
     const clearHistory = async() =>{
-        const [clearError, clearResult] = await orderClearHistory(user);
+        const [clearError] = await orderClearHistory(user);
 
         if(clearError !== null){
             return;
