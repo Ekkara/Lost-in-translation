@@ -36,6 +36,7 @@ import withAuth from "../hoc/withAuth";
 import "../css/translate.css";
 
 const SIGN_SIZE = 25;
+const MAX_CHAR_LENGTH = 40;
 
 const Translate = () => {
   const { user, setUser } = useUser();
@@ -133,7 +134,13 @@ const Translate = () => {
       <div id="translateHolder">
         <div id="translationInput">
           <textarea
-            onChange={(inputBox) => setTranslateTxt(inputBox.target.value)}
+            onChange={(inputBox) => {
+              if (inputBox.target.value.length >= MAX_CHAR_LENGTH) {
+                inputBox.target.value = inputBox.target.value.substring(0,MAX_CHAR_LENGTH - 1);
+                alert(`You can only have a maximum of ${MAX_CHAR_LENGTH} characters`)
+              }
+              setTranslateTxt(inputBox.target.value);
+            }}
             placeholder="Enter your text here!"
           ></textarea>
         </div>

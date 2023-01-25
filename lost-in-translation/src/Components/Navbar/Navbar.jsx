@@ -1,10 +1,13 @@
 import { Navigate, NavLink } from "react-router-dom"
 import { useUser } from "../../context/UserContext"
+import "../../css/nav.css"
 
 const Navbar = () =>{
   const { user } = useUser()
   
   return(
+    <>
+    <div id="navPusher"></div>
     <nav>
       {user !== null && (
         <ul>
@@ -17,6 +20,7 @@ const Navbar = () =>{
         </ul>
       )}
     </nav>
+    </>
   )
 }
 

@@ -1,42 +1,52 @@
-#translateHolder{
+#translateHolder {
+  /*define size of app*/
+  position: relative;
+  float: left;
+}
+@media screen and (min-width: 600px) {
+  #translateHolder {
     /*define size of app*/
-    width: 100%;
+    width: calc(100% - 10em);
     height: 100%;
     position: relative;
-}
-#translateHolder button{
-    width: 200px;
-    padding: 1rem;
-    margin: auto;
-    text-align: center;
-} 
-#translationInput{
-    margin-left: 8em;
-    margin-right: 8em;
-}
-#translationInput textarea{
-    min-height: 30vh;
-    width: 100%;
-    border: 0.4em 0.4em 0.4em 0.4em;
-    border-style: solid;
-    box-sizing:border-box;
-    resize: none;
+    float: left;
+  }
 }
 
-#translateOutput{
-    min-height: 30vh;
-    border: 0.01em;
-    border-style: solid;
-    margin-left: 8em;
-    margin-right: 8em;
-    padding: 1em;
+#translateHolder button {
+  width: 200px;
+  padding: 1rem;
+  margin: auto;
+  text-align: center;
+}
+#translationInput {
+  margin-left: 8em;
+  margin-right: 8em;
+}
+#translationInput textarea {
+  min-height: 30vh;
+  width: 100%;
+  border: 0.4em 0.4em 0.4em 0.4em;
+  border-style: solid;
+  box-sizing: border-box;
+  resize: none;
 }
 
-.center { /*thank you DADU at https://stackoverflow.com/questions/6626314/center-an-item-with-position-relative */
-    -webkit-box-align:center;
-    -webkit-box-pack:center;
-    display:-webkit-box;
+#translateOutput {
+  min-height: 30vh;
+  border: 0.01em;
+  border-style: solid;
+  margin-left: 8em;
+  margin-right: 8em;
+  padding: 1em;
+}
 
-    margin-top: 1em;
-    margin-bottom: 1em;  
+.center {
+  /*thank you DADU at https://stackoverflow.com/questions/6626314/center-an-item-with-position-relative */
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  display: -webkit-box;
+
+  margin-top: 1em;
+  margin-bottom: 1em;
 }

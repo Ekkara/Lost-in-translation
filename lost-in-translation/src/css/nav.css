@@ -1,0 +1,30 @@
+*{
+    margin-top: 0;
+}
+
+nav{  
+    padding-top: 3em;
+    background-color: rgb(179, 179, 179);
+    min-height: 80px;
+}
+
+@media screen and (min-width: 600px) {
+    nav{
+        width: 10em;
+        min-height: calc(100vh - 8em);
+        height: 100%;
+        position: fixed;
+        margin-top:5em ;
+    }
+    #navPusher{
+        width: 10em;
+        min-height: calc(100vh - 8em);
+        height: 100%;
+        
+        float: left;
+        position: relative;
+        margin-top:5em ;
+        padding-top: 3em;
+    
+    }
+  }
