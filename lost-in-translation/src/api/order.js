@@ -70,8 +70,7 @@ return [error.message, null]
     return [error.message, null]
     }
     }*/
-
-    //to do not kicked out when not signed in?
+    
     //to do fluke has order[]
 export const orderClearHistory = async (user) =>{
 try{
