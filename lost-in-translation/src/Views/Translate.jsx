@@ -28,11 +28,27 @@ import z from "../components/individial_signs/z.png";
 import space from "../components/individial_signs/space.png";
 import { orderAdd } from "../api/order";
 import { useUser } from "../context/UserContext";
+import { useEffect } from "react";
+import { userById } from "../api/user";
+import { storageSave } from "../utils/storage";
+import { STORAGE_KEYS_USER } from "../const/storageKeys";
+import withAuth from "../hoc/withAuth";
 
 const SIGN_SIZE = 25;
 
 const Translate = () => {
   const {user, setUser} = useUser();
+  
+  useEffect(()=>{
+    const findUser = async ()=> {
+        const [error, latestUser] = await userById(user.id);
+        if(error === null){  
+          storageSave(STORAGE_KEYS_USER, latestUser);
+            setUser(latestUser);
+        }
+    }
+    findUser();
+},[setUser, user.id])
 
   const signMap = new Map();
   signMap.set("a", a);
@@ -109,4 +125,4 @@ const Translate = () => {
     </>
   );
 };
-export default Translate;
+export default withAuth(Translate);

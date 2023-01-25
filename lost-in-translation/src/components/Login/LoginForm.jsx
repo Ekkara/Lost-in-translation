@@ -31,7 +31,6 @@ const LoginForm = () => {
     if(user !== null){
       navigate('/translate');
     }
-
   }, [user, navigate])
 
   const onSubmit = async ({ username }) => {
