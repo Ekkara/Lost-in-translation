@@ -1,12 +1,16 @@
-import LoginForm from "../components/Login/LoginForm"
+import LoginForm from "../components/Login/LoginForm";
+import "../css/login.css";
 
-const Login = () =>{
-  return(
+const Login = () => {
+  return (
     <>
-      <h1>Login</h1>
-      <LoginForm />
+    <div id ="background"></div>
+      <div id="loginHolder">
+        <h1>Login</h1>
+        <LoginForm />
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
