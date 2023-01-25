@@ -20,7 +20,7 @@ const LoginForm = () =>{
     formState: { errors }
   } = useForm()
 
-  const {user, setUser} = useUser()
+  const { user, setUser } = useUser()
   
   const [loading, setLoading] = useState(false)
   const [apiError, setApiError] = useState(null)
@@ -37,7 +37,7 @@ const LoginForm = () =>{
     setLoading(true)
     const [error, userResponse] = await loginUser(username)
 
-    if (error !== null){
+    if(error !== null){
       setApiError(error)
     }
 
@@ -49,13 +49,15 @@ const LoginForm = () =>{
   }
 
   const errorMessage = (() =>{
-    if (!errors.username) return null
+    if(!errors.username){
+      return null
+    }
 
-    if (errors.username.type === "required"){
+    if(errors.username.type === "required"){
       return <span>Username is required</span>
     }
 
-    if (errors.username.type === "minLength"){
+    if(errors.username.type === "minLength"){
       return <span>Username is too short</span>
     }
   })()

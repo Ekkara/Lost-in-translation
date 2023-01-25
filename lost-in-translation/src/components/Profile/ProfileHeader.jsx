@@ -1,6 +1,7 @@
 const ProfileHeaders = ({username}) =>{ 
     return(
-        <header><h4>Hello welcome back {username}</h4></header>
+        <header><h4>Welcome back, {username}!</h4></header>
     )   
-};
-export default ProfileHeaders;
+}
+
+export default ProfileHeaders

@@ -6,14 +6,14 @@ const checkForUser = async (username) =>{
   try{
     const response = await fetch(`${apiURL}?username=${username}`)
     
-    if (!response.ok){
+    if(!response.ok){
       throw new Error("Could not complete request")
     }
 
     const data = await response.json()
     return [null, data]
   }
-  catch (error){
+  catch(error){
     return [error.message, []]
   }
 }
@@ -28,14 +28,14 @@ const createUser = async (username) =>{
       })
     })
 
-    if (!response.ok){
+    if(!response.ok){
       throw new Error("Could not create user with username " + username)
     }
 
     const data = await response.json()
     return [null, data]
   }
-  catch (error){
+  catch(error){
     return [error.message, []]
   }
 }
@@ -43,11 +43,11 @@ const createUser = async (username) =>{
 export const loginUser = async (username) =>{
   const [checkError, user] = await checkForUser(username)
 
-  if (checkError !== null){
+  if(checkError !== null){
     return [checkError, null]
   }
 
-  if (user.length > 0){
+  if(user.length > 0){
     return [null, user.pop()]
   }
 
@@ -58,14 +58,14 @@ export const userById = async (userid) =>{
   try{
     const response = await fetch(`${apiURL}/${userid}`)
 
-    if (!response.ok){
+    if(!response.ok){
       throw new Error("could not fetch!")
     }
 
     const user = await response.JSON()
     return [null, user]
   }
-  catch (error){
+  catch(error){
     return [error.message, null]
   }
 }
