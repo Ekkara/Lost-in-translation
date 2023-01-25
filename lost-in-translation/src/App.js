@@ -1,9 +1,9 @@
 import './App.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import Login from './Views/Login';
-import Profile from './Views/Profile';
+import Login from './views/Login';
+import Profile from './views/Profile';
 import Navbar from './components/Navbar/Navbar';
-import Translate from './Views/Translate';
+import Translate from './views/Translate';
 function App() {
  
   return (

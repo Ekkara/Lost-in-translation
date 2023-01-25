@@ -29,7 +29,7 @@ const Profile = () =>{
     }
     <ProfileHeaders username={user.username }/>
     <ProfileActions/>
-    {<ProfileTranslateHistory translations ={user.translations}/>}
+    {<ProfileTranslateHistory translations = {user.translations}/>}
     </>)
 }
 export default withAuth(Profile);

@@ -109,7 +109,7 @@ const Translate = () => {
       return;
     }
 
-
+    storageSave(STORAGE_KEYS_USER, updateUser);
     setUser(updateUser);
 }
   return (
