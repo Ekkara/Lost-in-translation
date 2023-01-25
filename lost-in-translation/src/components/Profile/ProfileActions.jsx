@@ -27,9 +27,6 @@ const ProfileActions = () =>{
 
     const handleLogoutClick = async () =>{
         if(window.confirm('Are you sure you wish to logout?')){
-            //to do, clear history
-            //orderClearHistory(user.id);
-
             //send event to the parent to log out
             await clearHistory();
            storageDelete(STORAGE_KEYS_USER);
