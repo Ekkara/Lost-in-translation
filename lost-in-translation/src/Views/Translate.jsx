@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useState } from "react"
-import { orderAdd } from "../api/order"
+import { translationAdd } from "../api/translate"
 import { userById } from "../api/user"
 import { useUser } from "../context/UserContext"
 import withAuth from "../hoc/withAuth"
@@ -129,7 +129,7 @@ const Translate = () =>{
       return
     }
 
-    const [error, updateUser] = await orderAdd(user, translateTxt)
+    const [error, updateUser] = await translationAdd(user, translateTxt)
     if(error !== null){
       return
     }

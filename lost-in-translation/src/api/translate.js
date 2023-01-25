@@ -2,7 +2,7 @@ import {createHeaders} from "./index"
 
 const  apiURL = process.env.REACT_APP_API_URL
 
-export const orderAdd = async (user, translation) =>{
+export const translationAdd = async (user, translation) =>{
     try{
         if(user.translations.length >= 10){    
             let tenLatestTranslations = [...user.translations, translation]
@@ -47,7 +47,7 @@ export const orderAdd = async (user, translation) =>{
     }
 }
 
-export const orderClearHistory = async (user) =>{
+export const translateClearHistory = async (user) =>{
     try{
         const response = await fetch(`${apiURL}/${user.id}`,{
             method: 'PATCH',

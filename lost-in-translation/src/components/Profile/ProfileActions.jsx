@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { orderClearHistory } from "../../api/order"
+import { translateClearHistory as translateClearHistory } from "../../api/translate"
 import { useUser } from "../../context/UserContext"
 import { storageDelete, storageSave } from "../../utils/storage"
 import { STORAGE_KEYS_USER } from "../../const/storageKeys"
@@ -8,7 +8,7 @@ const ProfileActions = () =>{
     const { user, setUser } = useUser()
 
     const clearHistory = async() =>{
-        const [clearError] = await orderClearHistory(user)
+        const [clearError] = await translateClearHistory(user)
 
         if(clearError !== null){
             return
