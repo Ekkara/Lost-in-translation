@@ -23,8 +23,7 @@ export const orderAdd = async (user, translation) =>{
 
             const result = await response.json()
             return [null, result]
-        }
-        
+        }      
         else{
             const response = await fetch(`${apiURL}/${user.id}`,{
                 method: 'PATCH',
@@ -43,7 +42,6 @@ export const orderAdd = async (user, translation) =>{
             return [null, result]
         }
     }
-
     catch(error){
         return [error.message, null]
     }
@@ -66,7 +64,7 @@ export const orderClearHistory = async (user) =>{
 
         const result = await response.json()
         return [null, result]
-    }
+    }  
     catch(error){
         return [error.message, null]
     }
