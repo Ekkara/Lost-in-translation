@@ -8,6 +8,13 @@ import { orderClearHistory } from "../../api/order";
 const ProfileActions = () =>{
     
     const {user, setUser} = useUser();
+<<<<<<< HEAD
+=======
+    const handleLogoutClick = () =>{
+        if(window.confirm('Are you sure you wish to logout?')){
+            //orderClearHistory(user.id);
+        }
+>>>>>>> 32bdd6c625a6c8c62102d757d4ad8fcb39704b46
 
 
     const clearHistory = async() =>{
