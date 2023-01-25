@@ -1,58 +1,58 @@
-import { Link } from "react-router-dom";
-import { useUser } from "../../context/UserContext";
-import { storageDelete, storageSave } from "../../utils/storage";
-import { STORAGE_KEYS_USER } from "../../const/storageKeys";
-import { orderClearHistory } from "../../api/order";
+import { Link } from "react-router-dom"
+import { useUser } from "../../context/UserContext"
+import { orderClearHistory } from "../../api/order"
+import { storageDelete, storageSave } from "../../utils/storage"
+import { STORAGE_KEYS_USER } from "../../const/storageKeys"
 
 
 const ProfileActions = () =>{    
-    const {user, setUser} = useUser();
+    const { user, setUser } = useUser()
 
     const clearHistory = async() =>{
-        const [clearError] = await orderClearHistory(user);
+        const [clearError] = await orderClearHistory(user)
 
         if(clearError !== null){
-            return;
+            return
         }
-        const updateUser = {
+
+        const updateUser ={
             ...user,
             translations:[]
         }
         
-        storageSave(STORAGE_KEYS_USER, updateUser);
-        setUser(updateUser);
+        storageSave(STORAGE_KEYS_USER, updateUser)
+        setUser(updateUser)
     }
 
     const handleLogoutClick = async () =>{
-        if(window.confirm('Are you sure you wish to logout?')){
+        if(window.confirm('Are you sure you wish to log out?')){
             //send event to the parent to log out
-            await clearHistory();
-           storageDelete(STORAGE_KEYS_USER);
+            await clearHistory()
+            storageDelete(STORAGE_KEYS_USER)
             setUser(null)
         }
     }
 
     const handleClearHistoryClick = async() =>{
-        if(!window.confirm('Are you sure you wish to delete all data? \n this can not be undone!')){
+        if(!window.confirm('Are you sure you wish to delete all data? \n This can not be undone!')){
             return
         }
-        await clearHistory();     
+        await clearHistory()
     }
 
-    
     return(
         <ul>
             <li>
-            <Link to="/translate">Translate</Link>
-                
+                <Link to="/translate">Translate</Link>           
             </li>
             <li>
-                <button  onClick={handleClearHistoryClick}>Clear history</button>
+                <button  onClick={handleClearHistoryClick}>Clear History</button>
             </li>
             <li>
-                <button onClick={handleLogoutClick}>Log out</button>
+                <button onClick={handleLogoutClick}>Log Out</button>
             </li>
         </ul>
     )   
-};
-export default ProfileActions;
+}
+
+export default ProfileActions
