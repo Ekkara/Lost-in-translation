@@ -11,6 +11,8 @@ const ProfileActions = () =>{
     const handleLogoutClick = () =>{
         if(window.confirm('Are you sure you wish to logout?')){
             //to do, clear history
+            //orderClearHistory(user.id);
+
             //send event to the parent to log out
            storageDelete(STORAGE_KEYS_USER);
             setUser(null)
@@ -18,10 +20,10 @@ const ProfileActions = () =>{
     }
 
     const handleClearHistoryClick = async() =>{
-        if(window.confirm('Are you sure you wish to delete all data? \n this can not be undone!')){
+        if(!window.confirm('Are you sure you wish to delete all data? \n this can not be undone!')){
             return
         }
-        const [clearError, clearResult] = await orderClearHistory();
+        const [clearError, clearResult] = await orderClearHistory(user);
 
         if(clearError !== null){
             return;

@@ -26,10 +26,14 @@ import x from "../components/individial_signs/x.png";
 import y from "../components/individial_signs/y.png";
 import z from "../components/individial_signs/z.png";
 import space from "../components/individial_signs/space.png";
+import { orderAdd } from "../api/order";
+import { useUser } from "../context/UserContext";
 
 const SIGN_SIZE = 25;
 
 const Translate = () => {
+  const {user, setUser} = useUser();
+
   const signMap = new Map();
   signMap.set("a", a);
   signMap.set("b", b);
@@ -60,7 +64,6 @@ const Translate = () => {
 
   const [translateTxt, setTranslateTxt]= useState('');
   const [translatedTxt, setTranslatedTxt] = useState('');  
-  
   const translate = (str) => {
     str = str.toLowerCase();
     let rElements = [];
@@ -76,12 +79,23 @@ const Translate = () => {
     return rElements;
   };
 
-  const translateButtonClick = () =>{
-    setTranslatedTxt(translate(translateTxt))
-    //to do: add history
-    //if over 10 remove latest
-}
+  const translateButtonClick = async () => {
+    
 
+    await setTranslatedTxt(translate(translateTxt))
+   
+    if(translateTxt.length <= 0){
+      alert("nothing to translate")
+      return;
+    } 
+    const [error, updateUser] = await orderAdd(user, translateTxt);
+    if(error !== null){
+      return;
+    }
+
+
+    setUser(updateUser);
+}
   return (
     <>
       <h1>Translate</h1>
