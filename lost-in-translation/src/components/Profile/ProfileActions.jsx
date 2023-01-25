@@ -10,7 +10,6 @@ const ProfileActions = () =>{
     const {user, setUser} = useUser();
     const handleLogoutClick = () =>{
         if(window.confirm('Are you sure you wish to logout?')){
-            //to do, clear history
             //orderClearHistory(user.id);
 
             //send event to the parent to log out

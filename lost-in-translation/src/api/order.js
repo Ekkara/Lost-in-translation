@@ -67,14 +67,14 @@ return [error.message, null]
     return [error.message, null]
     }
     }*/
-    
-    //to do fluke has order[]
+
 export const orderClearHistory = async (user) =>{
 try{
     const response = await fetch(`${apiURL}/${user.id}`, {
         method: 'PATCH',
         headers: createHeaders(),
         body: JSON.stringify({
+            username: user.username,
             translations: []
         })
     })
