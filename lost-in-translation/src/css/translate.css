@@ -30,6 +30,8 @@
   border-style: solid;
   box-sizing: border-box;
   resize: none;
+  padding: 1em;
+  font-size: 50px;
 }
 
 #translateOutput {

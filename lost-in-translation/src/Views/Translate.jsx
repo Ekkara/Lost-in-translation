@@ -6,37 +6,11 @@ import { useUser } from "../context/UserContext"
 import withAuth from "../hoc/withAuth"
 import { storageSave } from "../utils/storage"
 import { STORAGE_KEYS_USER } from "../const/storageKeys"
+import space from "../components/individial_signs/space.png"
 import "../css/translate.css"
 import "../css/nav.css"
-import a from "../components/individial_signs/a.png"
-import b from "../components/individial_signs/b.png"
-import c from "../components/individial_signs/c.png"
-import d from "../components/individial_signs/d.png"
-import e from "../components/individial_signs/e.png"
-import f from "../components/individial_signs/f.png"
-import g from "../components/individial_signs/g.png"
-import h from "../components/individial_signs/h.png"
-import i from "../components/individial_signs/i.png"
-import j from "../components/individial_signs/j.png"
-import k from "../components/individial_signs/k.png"
-import l from "../components/individial_signs/l.png"
-import m from "../components/individial_signs/m.png"
-import n from "../components/individial_signs/n.png"
-import o from "../components/individial_signs/o.png"
-import p from "../components/individial_signs/p.png"
-import q from "../components/individial_signs/q.png"
-import r from "../components/individial_signs/r.png"
-import s from "../components/individial_signs/s.png"
-import t from "../components/individial_signs/t.png"
-import u from "../components/individial_signs/u.png"
-import v from "../components/individial_signs/v.png"
-import w from "../components/individial_signs/w.png"
-import x from "../components/individial_signs/x.png"
-import y from "../components/individial_signs/y.png"
-import z from "../components/individial_signs/z.png"
-import space from "../components/individial_signs/space.png"
 
-const SIGN_SIZE = 50
+const SIGN_SIZE = 55
 const MAX_CHAR_LENGTH = 40
 
 const Translate = () =>{
@@ -56,32 +30,11 @@ const Translate = () =>{
   }, [setUser, user.id])
 
   const signMap = new Map()
-  signMap.set("a", a)
-  signMap.set("b", b)
-  signMap.set("c", c)
-  signMap.set("d", d)
-  signMap.set("e", e)
-  signMap.set("f", f)
-  signMap.set("g", g)
-  signMap.set("h", h)
-  signMap.set("i", i)
-  signMap.set("j", j)
-  signMap.set("k", k)
-  signMap.set("l", l)
-  signMap.set("m", m)
-  signMap.set("n", n)
-  signMap.set("o", o)
-  signMap.set("p", p)
-  signMap.set("q", q)
-  signMap.set("r", r)
-  signMap.set("s", s)
-  signMap.set("t", t)
-  signMap.set("u", u)
-  signMap.set("v", v)
-  signMap.set("w", w)
-  signMap.set("x", x)
-  signMap.set("y", y)
-  signMap.set("z", z)
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+  alphabet.forEach(letter => {
+    signMap.set(letter, require(`../components/individial_signs/${letter}.png`))
+  });
+  signMap.set(" ", space)
 
   const [translateTxt, setTranslateTxt] = useState("")
   const [translatedTxt, setTranslatedTxt] = useState("")
@@ -93,7 +46,7 @@ const Translate = () =>{
     for(let i = 0; i < str.length; i++){
       let char = str.charAt(i)
 
-      if(char.match(/[a-z]/)){
+      if(char.match(/[a-z]/) || char === " "){
         // thank you JaredPar! https://stackoverflow.com/questions/9862761/how-to-check-if-character-is-a-letter-in-javascript
         rElements.push(
           <img
@@ -105,19 +58,8 @@ const Translate = () =>{
           />
         )
       }
-      else if(char === " "){
-        rElements.push(
-          <img
-            src={space}
-            alt={char}
-            key={"char: " + i}
-            width={SIGN_SIZE + "px"}
-            height={SIGN_SIZE + "px"}
-          />
-        )
-      }
       else{
-        alert(`Please only use a-z or spaces, ${char} is not a valid character`)
+        alert(`${char} is not a valid character, please only use a-z or spaces`)
         setTranslatedTxt("")
         return
       }
