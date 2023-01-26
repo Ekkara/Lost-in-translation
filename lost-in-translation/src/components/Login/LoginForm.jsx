@@ -34,7 +34,7 @@ const LoginForm = () =>{
 
   const onSubmit = async({ username }) =>{
     setLoading(true)
-    const [error, userResponse] = await loginUser(username)
+    const [error, userResponse] = await loginUser(username /*username.toString().trim()*/)
 
     if(error !== null){
       setApiError(error)
@@ -67,13 +67,15 @@ const LoginForm = () =>{
       <h2>What's your name?</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <fieldset>
+          <div>
           <label htmlFor="userName">Username</label>
           <input
             type="text"
             placeholder="username"
             {...register("username", usernameConfig)}
           />
-          {errorMessage}
+          </div>
+          <span>{errorMessage}</span>
         </fieldset>
 
         <button type="submit" disabled={loading}>

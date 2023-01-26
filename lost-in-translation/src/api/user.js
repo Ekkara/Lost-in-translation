@@ -3,6 +3,7 @@ import { createHeaders } from "./index.js"
 const apiURL = process.env.REACT_APP_API_URL
 
 const checkForUser = async (username) =>{
+  //username = username.toString().trim()
   try{
     const response = await fetch(`${apiURL}?username=${username}`)
     

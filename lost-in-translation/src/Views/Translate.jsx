@@ -36,7 +36,7 @@ import y from "../components/individial_signs/y.png"
 import z from "../components/individial_signs/z.png"
 import space from "../components/individial_signs/space.png"
 
-const SIGN_SIZE = 25
+const SIGN_SIZE = 50
 const MAX_CHAR_LENGTH = 40
 
 const Translate = () =>{
@@ -116,6 +116,11 @@ const Translate = () =>{
           />
         )
       }
+      else{
+        alert(`Please only use a-z or spaces, ${char} is not a valid character`)
+        setTranslatedTxt("")
+        return
+      }
     }
 
     return rElements
@@ -157,7 +162,7 @@ const Translate = () =>{
           ></textarea>
         </div>
 
-        <div class="center">
+        <div className="center">
           <button
             onClick={() =>{
               translateButtonClick()
