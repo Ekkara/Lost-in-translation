@@ -1,46 +1,47 @@
-*{
+* {
     margin-top: 0;
 }
 
-nav{  
+nav {
     padding-top: 3em;
     background-color: rgb(179, 179, 179);
     min-height: 80px;
 }
+
 #navList {
     list-style: none;
     font-size: 1.2em;
     line-height: 2.3em;
-    
 }
 
-#navList a:any-link{
+#navList a:any-link {
     color: black;
-    text-decoration:none;
+    text-decoration: none;
 }
-#navList a:hover{
+
+#navList a:hover {
     color: rgb(214, 214, 214);
-    text-decoration:none;
+    text-decoration: none;
 }
 
 
 @media screen and (min-width: 600px) {
-    nav{
+    nav {
         width: 10em;
         min-height: calc(100vh - 8em);
         height: 100%;
         position: fixed;
-        margin-top:5em ;
+        margin-top: 5em;
     }
-    #navPusher{
+
+    #navPusher {
         width: 10em;
         min-height: calc(100vh - 8em);
         height: 100%;
-        
+
         float: left;
         position: relative;
-        margin-top:5em ;
+        margin-top: 5em;
         padding-top: 3em;
-    
     }
-  }
+}

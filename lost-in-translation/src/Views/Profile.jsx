@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { userById } from "../api/user"
+import { getUser } from "../api/user"
 import { useUser } from "../context/UserContext"
 import ProfileActions from "../components/Profile/ProfileActions"
 import ProfileHeaders from "../components/Profile/ProfileHeader"
@@ -10,32 +10,31 @@ import { STORAGE_KEYS_USER } from "../const/storageKeys"
 import "../css/profile.css"
 import "../css/nav.css"
 
-const Profile = () =>{
-    const {user, setUser} = useUser()
+const Profile = () => {
+    const { user, setUser } = useUser()
 
-    useEffect(()=>{
-        const findUser = async ()=>{
-            const [error, latestUser] = await userById(user.id)
+    useEffect(() => {
+        const findUser = async () => {
+            const [error, latestUser] = await getUser(user.id)
 
-            if(error === null){
+            if (error === null) {
                 storageSave(STORAGE_KEYS_USER, latestUser)
                 setUser(latestUser)
             }
         }
 
         findUser()
-    },[setUser, user.id])
+    }, [setUser, user.id])
 
-    return(
+    return (
         <>
             <h1>Profile</h1>
             <div id="profileHolder">
-            <ProfileHeaders username={user.username }/>
-            <ProfileActions/>
-            {<ProfileTranslateHistory translations = {user.translations}/>}
+                <ProfileHeaders username={user.username} />
+                <ProfileActions />
+                {<ProfileTranslateHistory translations={user.translations} />}
             </div>
         </>
     )
 }
-
 export default withAuth(Profile)

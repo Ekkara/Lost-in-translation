@@ -3,6 +3,7 @@
   position: relative;
   float: left;
 }
+
 @media screen and (min-width: 600px) {
   #translateHolder {
     /*define size of app*/
@@ -19,10 +20,12 @@
   margin: auto;
   text-align: center;
 }
+
 #translationInput {
   margin-left: 8em;
   margin-right: 8em;
 }
+
 #translationInput textarea {
   min-height: 30vh;
   width: 100%;

@@ -1,71 +1,44 @@
-import {createHeaders} from "./index"
+import { createHeaders } from "./index"
 
-const  apiURL = process.env.REACT_APP_API_URL
+const apiURL = process.env.REACT_APP_API_URL
 
-export const translationAdd = async (user, translation) =>{
-    try{
-        if(user.translations.length >= 10){    
-            let tenLatestTranslations = [...user.translations, translation]
-            tenLatestTranslations.shift()
-
-            const response = await fetch(`${apiURL}/${user.id}`,{
-                method: 'PATCH',
-                headers: createHeaders(),
-                body: JSON.stringify({
-                    username: user.username,
-                    translations: tenLatestTranslations
-                })
-            })
-
-            if(!response.ok){
-                throw new Error('Could not update the translation')
-            }
-
-            const result = await response.json()
-            return [null, result]
-        }      
-        else{
-            const response = await fetch(`${apiURL}/${user.id}`,{
-                method: 'PATCH',
-                headers: createHeaders(),
-                body: JSON.stringify({
-                    username: user.username,
-                    translations: [...user.translations, translation]
-                })
-            })
-
-            if(!response.ok){
-                throw new Error('Could not update the translation')
-            }
-
-            const result = await response.json()
-            return [null, result]
-        }
+export const translationAdd = async (user, translation) => {
+    //When an 11th translation enters the array, shift the 1st one out to cap the history at 10
+    let tenLatestTranslations = [...user.translations, translation]
+    if (user.translations.length >= 10) {
+        tenLatestTranslations = [...user.translations, translation]
+        tenLatestTranslations.shift()
     }
-    catch(error){
-        return [error.message, null]
-    }
+    return updateTranslation(user, tenLatestTranslations)
 }
 
-export const translateClearHistory = async (user) =>{
-    try{
-        const response = await fetch(`${apiURL}/${user.id}`,{
+export const translateClearHistory = async (user) => {
+    //To clear history we send in an empty array
+    return updateTranslation(user, [])
+}
+
+const updateTranslation = async (user, translationHistory) => {
+    //Try to update the JSON file with the new history  
+    try {
+        const response = await fetch(`${apiURL}/${user.id}`, {
             method: 'PATCH',
             headers: createHeaders(),
             body: JSON.stringify({
                 username: user.username,
-                translations: []
+                translations: translationHistory
             })
         })
 
-        if(!response.ok){
+        //Fail safe
+        if (!response.ok) {
             throw new Error("could not clear history")
         }
 
+        //Return the result
         const result = await response.json()
         return [null, result]
-    }  
-    catch(error){
+    }
+    catch (error) {
         return [error.message, null]
     }
 }

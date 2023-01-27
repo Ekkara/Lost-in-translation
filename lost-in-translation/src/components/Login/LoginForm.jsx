@@ -6,74 +6,70 @@ import { useUser } from "../../context/UserContext"
 import { storageSave } from "../../utils/storage"
 import { STORAGE_KEYS_USER } from "../../const/storageKeys"
 
-const usernameConfig ={
+const usernameConfig = {
   required: true,
   minLength: 2
 }
 
-const LoginForm = () =>{
+const LoginForm = () => {
 
-  //Hooks
-  const{
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm()
+  //Init hooks
+  const { register, handleSubmit, formState: { errors } } = useForm()
 
   const { user, setUser } = useUser()
-  
   const [loading, setLoading] = useState(false)
   const [apiError, setApiError] = useState(null)
   const navigate = useNavigate()
 
-  useEffect(() =>{
-    if(user !== null){
+  //Check if the user is logged in, if they are redirect them to translate page 
+  useEffect(() => {
+    if (user !== null) {
       navigate('/translate')
     }
   }, [user, navigate])
 
-  const onSubmit = async({ username }) =>{
+  const attemptToLogin = async ({ username }) => {
     setLoading(true)
-    const [error, userResponse] = await loginUser(username /*username.toString().trim()*/)
+    const [error, userResponse] = await loginUser(username)
 
-    if(error !== null){
+    if (error !== null) {
       setApiError(error)
     }
 
-    if(userResponse !== null){
+    if (userResponse !== null) {
       storageSave(STORAGE_KEYS_USER, userResponse)
       setUser(userResponse)
     }
-
     setLoading(false)
   }
 
-  const errorMessage = (() =>{
-    if(!errors.username){
+  const errorMessage = (() => {
+    if (!errors.username) {
       return null
     }
 
-    if(errors.username.type === "required"){
+    if (errors.username.type === "required") {
       return <span>Username is required</span>
     }
 
-    if(errors.username.type === "minLength"){
+    if (errors.username.type === "minLength") {
       return <span>Username is too short</span>
     }
   })()
 
-  return(
+  //Base of the html for the login page
+  return (
     <>
       <h2>What's your name?</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(attemptToLogin)}>
         <fieldset>
           <div>
-          <label htmlFor="userName">Username</label>
-          <input
-            type="text"
-            placeholder="username"
-            {...register("username", usernameConfig)}
-          />
+            <label htmlFor="userName">Username</label>
+            <input
+              type="text"
+              placeholder="username"
+              {...register("username", usernameConfig)}
+            />
           </div>
           <span>{errorMessage}</span>
         </fieldset>

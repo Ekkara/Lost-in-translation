@@ -1,30 +1,33 @@
 #profileHolder {
+  /*define size of app*/
+  position: relative;
+  float: left;
+  margin-left: 1em;
+}
+
+@media screen and (min-width: 600px) {
+  #profileHolder {
     /*define size of app*/
+    width: calc(100% - 11em);
+    height: 100%;
     position: relative;
     float: left;
     margin-left: 1em;
+    margin-top: 1em;
   }
-  @media screen and (min-width: 600px) {
-    #profileHolder {
-      /*define size of app*/
-      width: calc(100% - 11em);
-      height: 100%;
-      position: relative;
-      float: left;
-      margin-left: 1em;
-      margin-top: 1em;
-    }
-  }
+}
 
-  #historyList{
-    list-style: decimal;
-  }
-  #actionList{
-    list-style: none;
-    display:block;
-    display: flex;
-  }
-  #actionList li{
-    margin-right: 2em;
+#historyList {
+  list-style: decimal;
+}
 
-  }
+#actionList {
+  list-style: none;
+  display: block;
+  display: flex;
+}
+
+#actionList li {
+  margin-right: 2em;
+
+}

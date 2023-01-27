@@ -1,14 +1,14 @@
 import { Navigate } from "react-router-dom"
 import { useUser } from "../context/UserContext"
 
-const withAuth = Component => props =>{
-   const {user} = useUser()
+//If there is a user, continue use the weppage, otherwise go back to login
+const withAuth = Component => props => {
+   const { user } = useUser()
 
-   if(user !== null){
-      return <Component {...props}/>
+   if (user !== null) {
+      return <Component {...props} />
    }
-      
-   return <Navigate to="/"/>
-}
 
+   return <Navigate to="/" />
+}
 export default withAuth
